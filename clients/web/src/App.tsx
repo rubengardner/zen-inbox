@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {Button, Switch} from '@mui/material';
+import {Switch} from '@mui/material';
 import Login from "./login/Login";
 
 const App = () => {
@@ -20,9 +20,6 @@ const App = () => {
                     onChange={() => setIsDarkMode(!isDarkMode)}
                     inputProps={{'aria-label': 'theme toggle'}}
                 />
-                <Button variant="contained" color="primary">
-                    Toggle Theme
-                </Button>
                 <Login/>
             </div>
         </ThemeProvider>
