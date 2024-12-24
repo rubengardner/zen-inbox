@@ -23,7 +23,8 @@ class Email(BaseModel):
 
 class EmailQuery(BaseModel):
     sender: str | None
-    date: datetime | None
+    since: datetime | None
+    before: datetime | None
     body: str | None
 
 

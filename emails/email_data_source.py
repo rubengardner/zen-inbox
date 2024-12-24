@@ -33,8 +33,10 @@ class EmailDataSource:
         query_parts = []
         if email_query.sender:
             query_parts.append(f'FROM "{email_query.sender}"')
-        if email_query.date:
+        if email_query.since:
             query_parts.append(f'SINCE "{email_query.date.strftime("%d-%b-%Y")}"')
+        if email_query.before:
+            query_parts.append(f'BEFORE "{email_query.date.strftime("%d-%b-%Y")}"')
         if email_query.body:
             query_parts.append(f'BODY "{email_query.body}"')
 
