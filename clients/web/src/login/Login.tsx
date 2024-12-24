@@ -5,7 +5,7 @@ import {post} from "../connector/APIConnector";
 
 const Login = () => {
     const {register, handleSubmit, formState: {errors}, control} = useForm();
-    const theme = useTheme(); // Access the theme
+    const theme = useTheme();
 
     const onSubmit = (data: any) => {
         post('auth/login', data).then(response => {
