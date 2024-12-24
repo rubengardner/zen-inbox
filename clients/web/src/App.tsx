@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {Switch} from '@mui/material';
 import Login from "./login/Login";
+import {Route, Routes} from "react-router-dom";
 
 const App = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -20,7 +21,10 @@ const App = () => {
                     onChange={() => setIsDarkMode(!isDarkMode)}
                     inputProps={{'aria-label': 'theme toggle'}}
                 />
-                <Login/>
+                <Routes>
+                    <Route path="/home" element={<Login/>}/>
+                    <Route path="*" element={<h1>404: Page Not Found</h1>}/>
+                </Routes>
             </div>
         </ThemeProvider>
     );
