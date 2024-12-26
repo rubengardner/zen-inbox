@@ -4,7 +4,7 @@ from email import message_from_bytes
 from email.header import decode_header
 from typing import List, Tuple
 
-from emails.email import Email
+from server.emails.email import Email
 
 
 class EmailParser:
@@ -51,8 +51,8 @@ class EmailParser:
                 content_type = part.get_content_type()
                 content_disposition = str(part.get("Content-Disposition"))
                 if (
-                    "attachment" not in content_disposition
-                    and content_type == "text/plain"
+                        "attachment" not in content_disposition
+                        and content_type == "text/plain"
                 ):
                     try:
                         body = part.get_payload(decode=True).decode()

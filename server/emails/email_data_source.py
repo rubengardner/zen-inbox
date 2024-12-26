@@ -1,14 +1,14 @@
 import imaplib
 
-from emails.email import Email, EmailQuery, EmailRequest
-from emails.email_parser import EmailParser
-from emails.exceptions import EmailSearchError
+from server.emails.email import Email, EmailQuery, EmailRequest
+from server.emails.email_parser import EmailParser
+from server.emails.exceptions import EmailSearchError
 
 
 class EmailDataSource:
 
     def __init__(
-        self, session: imaplib.IMAP4_SSL, email_parser: EmailParser = EmailParser()
+            self, session: imaplib.IMAP4_SSL, email_parser: EmailParser = EmailParser()
     ):
         self.session = session
         self.email_parser = email_parser

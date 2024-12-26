@@ -2,7 +2,7 @@ from collections import Counter
 
 from pydantic import BaseModel
 
-from emails.email import Email
+from server.emails.email import Email
 
 
 class EmailStats(BaseModel):
@@ -12,7 +12,7 @@ class EmailStats(BaseModel):
 
 class EmailSorter:
     def get_top_sender(
-        self, emails: list[Email], number_of_top_senders: int
+            self, emails: list[Email], number_of_top_senders: int
     ) -> list[EmailStats]:
         sender_counts = Counter(email.sender for email in emails)
         top_senders = sender_counts.most_common(number_of_top_senders)

@@ -1,7 +1,7 @@
 import imaplib
 from typing import Optional
 
-from auth.auth_information import AuthInformation
+from server.auth.auth_information import AuthInformation
 
 
 class AuthService:
