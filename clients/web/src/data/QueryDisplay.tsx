@@ -24,15 +24,17 @@ const QueryDisplay = (props: QueryDisplayProps) => {
                 padding: theme.spacing(3),
                 borderRadius: 2,
                 backgroundColor: theme.palette.background.default,
-                width: '100%',
-                maxWidth: '600px',
-                margin: '0 auto',
+                border: `1px solid ${theme.palette.primary.main}`,
+                width: '90%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                height: '150px'
             }}
         >
             <Typography
                 variant="h5"
                 component="h2"
-                fontWeight="bold"
                 color={theme.palette.text.primary}
                 gutterBottom
                 textAlign="center"
@@ -44,7 +46,7 @@ const QueryDisplay = (props: QueryDisplayProps) => {
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: theme.spacing(2),
+                    gap: theme.spacing(1),
                 }}
             >
                 {query.since && (
