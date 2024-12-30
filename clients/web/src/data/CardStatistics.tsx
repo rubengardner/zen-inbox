@@ -1,13 +1,13 @@
 import {Paper, Typography, useTheme} from "@mui/material";
 import React from "react";
 
-interface TotalNumberOfEmailsProps {
+interface CardStatisticsProps {
     numberOfEmails: number;
     message: string;
 
 }
 
-const CardStatics = (props: TotalNumberOfEmailsProps) => {
+const CardStatistics = (props: CardStatisticsProps) => {
     const theme = useTheme();
     const numberOfEmails = props.numberOfEmails;
     const message = props.message;
@@ -47,4 +47,4 @@ const CardStatics = (props: TotalNumberOfEmailsProps) => {
     );
 };
 
-export default TotalNumberOfEmails;
+export default CardStatistics;
