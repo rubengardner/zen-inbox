@@ -1,38 +1,51 @@
 import {Paper, useTheme} from "@mui/material";
-import { BarChart } from "@mui/x-charts";
+import {BarChart} from "@mui/x-charts";
+import {axisClasses} from '@mui/x-charts/ChartsAxis';
 
 interface MonthlyEmailStats {
-  [year: number]: {
-    [month: number]: number;
-  };
+    [year: number]: {
+        [month: number]: number;
+    };
 }
 
 interface EmailPerMonthChartProps {
-  monthlyEmailStats: MonthlyEmailStats;
+    monthlyEmailStats: MonthlyEmailStats;
 }
 
 interface SeriesData {
-  label: string;
-  data: number[];
+    label: string;
+    data: number[];
 }
 
-const EmailPerMonthChart = (props: EmailPerMonthChartProps) => {
-  const { monthlyEmailStats } = props;
-   const theme = useTheme();
+const EmailsPerMonthChart = (props: EmailPerMonthChartProps) => {
+    const {monthlyEmailStats} = props;
+    const theme = useTheme();
 
-function processEmailStats(monthlyEmailStats: MonthlyEmailStats): SeriesData[] {
-  const allMonths = Array.from({ length: 12 }, (_, i) => i + 1);
+    function processEmailStats(monthlyEmailStats: MonthlyEmailStats): SeriesData[] {
+        const allMonths = Array.from({length: 12}, (_, i) => i + 1);
 
-  return Object.entries(monthlyEmailStats).map(([year, months]) => {
-    const data = allMonths.map(month => months[month] || 0);
-    return { label: year, data };
-  });
-}
+        return Object.entries(monthlyEmailStats).map(([year, months]) => {
+            const data = allMonths.map(month => months[month] || 0);
+            return {label: year, data};
+        });
+    }
 
-  const series = processEmailStats(monthlyEmailStats);
+    const series = processEmailStats(monthlyEmailStats);
 
-  return (
-     <Paper
+    const chartSetting = {
+        yAxis: [
+            {
+                label: 'Emails',
+            },
+        ],
+        sx: {
+            [`.${axisClasses.left} .${axisClasses.label}`]: {
+                transform: 'translate(-20px, 0)',
+            },
+        },
+    };
+    return (
+        <Paper
             elevation={2}
             sx={{
                 padding: theme.spacing(3),
@@ -46,13 +59,16 @@ function processEmailStats(monthlyEmailStats: MonthlyEmailStats): SeriesData[] {
                 justifyContent: 'center',
             }}
         >
-      <BarChart
-        width={500}
-        height={300}
-        series={series}
-      />
-    </Paper>
-  );
+            <BarChart
+                width={500}
+                height={300}
+                series={series}
+                {...chartSetting}
+
+
+            />
+        </Paper>
+    );
 };
 
-export default EmailPerMonthChart;
+export default EmailsPerMonthChart;
