@@ -11,6 +11,7 @@ import {
     Typography,
     useTheme
 } from '@mui/material';
+import {post} from "../connector/APIConnector";
 
 const QueryBuilder = () => {
     const [dateOption, setDateOption] = useState<'range' | 'older' | 'younger'>('range');
@@ -25,27 +26,25 @@ const QueryBuilder = () => {
     };
 
     const handleSubmit = () => {
-        let query = '';
+        const query = {
+            since: dateOption === 'younger' ? startDate : null,
+            before: dateOption === 'older' ? startDate : null,
+            body: searchBody || null,
+            sender: searchSender || null
+        };
 
-        if (dateOption === 'range') {
-            if (startDate && endDate) {
-                query += `date: [${startDate} TO ${endDate}]`;
+        if (dateOption === 'range' && startDate && endDate) {
+            query.since = startDate;
+            query.before = endDate;
+        }
+
+        post('emails/emails', query).then(response => {
+            console.log(query);
+            if (response.status === 200) {
+                console.log('Query successful');
             }
-        } else if (dateOption === 'older') {
-            query += `date: [* TO ${startDate}]`;
-        } else if (dateOption === 'younger') {
-            query += `date: [${startDate} TO *]`;
-        }
-
-        if (searchBody) {
-            query += ` body: "${searchBody}"`;
-        }
-
-        if (searchSender) {
-            query += ` sender: "${searchSender}"`;
-        }
-        console.log(query);
-    };
+        });
+    }
 
     return (
         <Container
